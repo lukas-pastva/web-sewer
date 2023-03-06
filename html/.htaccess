@@ -1,0 +1,27 @@
+<Files sekcia>
+ForceType application/x-httpd-php
+</Files>
+<Files clanok>
+ForceType application/x-httpd-php
+</Files>
+<Files image>
+ForceType application/x-httpd-php
+</Files>
+<Files uploads>
+ForceType application/x-httpd-php
+</Files>
+<Files e4k>
+ForceType application/x-httpd-php
+</Files>
+<Files panika71>
+ForceType application/x-httpd-php
+</Files>
+<Files hair>
+ForceType application/x-httpd-php
+</Files>
+<Files skatepark>
+ForceType application/x-httpd-php
+</Files>
+<Files pastwo>
+ForceType application/x-httpd-php
+</Files>

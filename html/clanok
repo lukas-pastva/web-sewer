@@ -1,0 +1,12 @@
+<?
+	
+	$pathArr = explode('/', $_SERVER['REQUEST_URI']);
+	$id = explode('-',$pathArr[count($pathArr)-1]);
+
+	if(!is_numeric($id[0])){
+		$id = explode('?',$pathArr[count($pathArr)-1]);
+	}
+
+	include('index.php');
+
+?>

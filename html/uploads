@@ -1,0 +1,57 @@
+<?
+
+  include_once('db.inc.php');
+	include_once(ADMIN_LOCATION.'admin_functions.php');
+  
+	$path = explode('/', $_SERVER['PATH_INFO']);
+	$filename = UPLOADS.$path[count($path)-1];
+	//open file on fileserver located below and send special headers which are only allowed!
+	$extension = mb_substr($filename, (strrpos($filename, '.')+1) );
+	$file = fopen($filename, 'r');
+	$output = fread($file, filesize($filename));
+	fclose($file);
+	if($extension=='jpg'){
+		header("Content-type: image/jpeg");
+	}
+	else if($extension=='gif'){
+		header("Content-type: image/gif");
+	}
+	else if($extension=='png'){
+		header("Content-type: image/png");
+	}
+	else if($extension=='swf'){
+		header("Content-type: application/x-shockwave-flash");
+	}
+	else if($extension=='pdf'){
+		header("Content-type: application/pdf");
+	}
+	else if($extension=='zip'){
+		header("Content-type: application/zip");
+	}
+	else if($extension=='swf'){
+		header("Content-type: application/x-shockwave-flash");
+	}
+	else if($extension=='wmv'){
+		header("Content-type: video/x-ms-wmv");
+	}
+	else if($extension=='flv'){
+		header("Content-type: video/x-flv");
+	}
+	else if($extension=='mpeg'){
+		header("Content-type: video/mpeg");
+	}
+	else if($extension=='mp4'){
+		header("Content-type: video/mp4");
+	}
+	else if($extension=='doc' || $extension=='docx'){
+		header("Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+	}
+	else if($extension=='xls' || $extension=='xlsx'){
+		header("Content-type: application/vnd.ms-excel");
+	} else {
+		die;
+	}
+	
+	echo ($output);
+
+?>

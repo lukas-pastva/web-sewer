@@ -1,0 +1,13 @@
+<?
+
+	include_once('db.inc.php');
+	include_once(ADMIN_LOCATION."admin_functions.php");
+
+	$structure_id = explode('/', $_SERVER['REQUEST_URI']);
+	$structure_name = $structure_id[count($structure_id)-1];
+	$structure_id = getStructureIdFromNormalizedName($structure_name);
+	$_REQUEST['structure_id'] = $structure_id;
+	$_REQUEST['section'] = $structure_name;
+	include('index.php');
+
+?>

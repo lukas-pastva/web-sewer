@@ -1,0 +1,122 @@
+<?
+
+  include_once('db.inc.php');
+  
+  include_once(ADMIN_LOCATION.'admin_functions.php');
+	
+  $path = explode('/', $_SERVER['PATH_INFO']);
+
+  $i = $path[count($path)-2];
+  $j = substr($path[count($path)-1], 0, -4);
+ 
+  
+//zobrazi foto, hehe
+if(is_numeric($j)){
+	$id = $j;
+}else{
+	die;
+}
+
+if(isset($i)){
+	
+	if(isset($i) && $i=='1'){
+		$img = mysql_fetch_array(psw_mysql_query('SELECT image FROM clanok WHERE clanok_id = ' .$id));
+		$img = $img['image'];
+		header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	
+	if(isset($i) && $i=='2'){
+		$img = mysql_fetch_array(psw_mysql_query('SELECT image FROM odkaz WHERE odkaz_id = ' .$id));
+		$img = $img['image'];
+		header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	if(isset($i) && $i=='3'){
+		$img = mysql_fetch_array(psw_mysql_query('SELECT thumb FROM partylist WHERE partylist_id = ' .$id));
+		$img = $img['thumb'];
+		header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	if(isset($i) && $i=='4'){
+		$img = mysql_fetch_array(psw_mysql_query('SELECT poster FROM partylist WHERE partylist_id = ' .$id));
+		$img = $img['poster'];
+		header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	if(isset($i) && $i=='5'){
+		$img = mysql_fetch_array(psw_mysql_query('SELECT thumb2 FROM partylist WHERE partylist_id = ' .$id));
+		$img = $img['thumb2'];
+	
+		
+		header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	if(isset($i) && $i=='6'){
+		$img = psw_mysql_fetch_array(psw_mysql_query('SELECT image FROM flyer WHERE flyer_id = ' .$id));
+		$img = $img['image'];
+		header("Content-type: image/jpeg");
+		echo base64_decode($img);
+	}
+	if(isset($i) && $i=='7'){
+		$img = psw_mysql_fetch_array(psw_mysql_query('SELECT image, alt FROM banner WHERE banner_id = ' .$id));
+		
+		//$img = $img['image'];
+		if(strtolower($img['alt'])=='jpg'){
+			header("Content-type: image/jpeg");
+		}
+		if(strtolower($img['alt'])=='swf'){
+			header("Content-type: application/x-shockwave-flash");
+		}
+		echo base64_decode($img['image']);
+	}
+	if(isset($i) && $i=='8'){
+		//checks if ifile already exist, if yes on open and return
+		if(is_file('./foto/clanky/avatar_5_'.$id.'.jpg')){
+			header('location: ../../foto/clanky/avatar_5_'.$id.'.jpg');
+		} else{
+			//need to resize
+			$src_img  = imagecreatefromjpeg('./foto/clanky/avatar_1_'.$id.'.jpg');
+			
+			$dst_img = imageCreateTrueColor(NAJCITANEJSIE_THUMBNAIL_WIDTH, NAJCITANEJSIE_THUMBNAIL_HEIGHT );
+			imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, NAJCITANEJSIE_THUMBNAIL_WIDTH, NAJCITANEJSIE_THUMBNAIL_HEIGHT, $avatar[1]['width'], $avatar[1]['height']);
+			imagejpeg($dst_img, './foto/clanky/avatar_5_'.$id.'.jpg', THUMB_PICTURE_QUALITY);
+			header('Content-Disposition: inline; filename="image_'.$i.'_'.$id.'.jpg"');
+			header("Content-type: image/jpeg");
+			echo base64_decode($fileData);
+		}
+	}
+	if(isset($i) && $i=='9'){
+		$img = psw_mysql_fetch_array(psw_mysql_query('SELECT image, alt FROM banner2 WHERE banner_id = ' .$id));
+		
+		//$img = $img['image'];
+		if(strtolower($img['alt'])=='jpg'){
+			header("Content-type: image/jpeg");
+		}
+		if(strtolower($img['alt'])=='swf'){
+			header("Content-type: application/x-shockwave-flash");
+		}
+		echo base64_decode($img['image']);
+	}
+	if(isset($i) && $i=='10'){
+		$img = psw_mysql_fetch_array(psw_mysql_query('SELECT image, alt FROM banner3 WHERE banner_id = ' .$id));
+		
+		//$img = $img['image'];
+		if(strtolower($img['alt'])=='jpg'){
+			header("Content-type: image/jpeg");
+		}
+		if(strtolower($img['alt'])=='swf'){
+			header("Content-type: application/x-shockwave-flash");
+		}
+		echo base64_decode($img['image']);
+	}
+} else {
+	die;
+}
+
+?>
