@@ -63,8 +63,6 @@ if(isDetail()){
 	}
 }
 
-
-
 $_REQUEST['selectedlang']= 'sk';
 
 $title = SITENAME.(isset($_REQUEST['id'])?' - '.getNazovClankuFromId($_REQUEST['id']):SITE_HOMETITLE);
