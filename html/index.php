@@ -81,7 +81,6 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag(\'js\', new Date());
-
       gtag(\'config\', \'G-YQ72Q66F80\');
     </script>
 	<meta name="robots" content="index, follow" />
